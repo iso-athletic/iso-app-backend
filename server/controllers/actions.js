@@ -6,7 +6,7 @@ const Action = require('../models').Action;
 module.exports = {
   GetAll(req, res) {
     return Action
-      .all()
+      .findAll({attributes: ['type']})
       .then(action => res.status(200).send(action))
       .catch(error => {
         res.status(400).send(error)
