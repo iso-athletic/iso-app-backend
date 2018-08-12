@@ -1,9 +1,9 @@
 const sessions = require('./sessions');
 const drills = require('./drills');
-const scrimmageApps = require('./scrimmageApps')
+const actions = require('./actions')
 
 module.exports = {
   sessions,
   drills,
-  scrimmageApps
+  actions,
 };

@@ -1,6 +1,6 @@
 const sessionsController = require('../controllers').sessions;
 const drillsController = require('../controllers').drills;
-const scrimmageAppsController = require('../controllers').scrimmageApps;
+const actionsController = require('../controllers').actions;
 
 module.exports = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
@@ -14,6 +14,6 @@ module.exports = (app) => {
   // drills
   app.post('/api/sessions/:session_id/drills', drillsController.create);
 
-  // scrimmage app settings
-  app.post('/api/test', scrimmageAppsController.read);
+  app.get('/api/actions', actionsController.GetAll);
+  app.post('/api/actions/new', actionsController.NewAction);
 };

@@ -12,4 +12,10 @@ module.exports = {
       .then(drill => res.status(201).send(drill))
       .catch(error => res.status(400).send(error));
   },
+  getAll(req, res) {
+    return Drill
+      .all()
+      .then(drill => res.status(200).send(drill))
+      .catch(error => res.status.send(error));
+  }
 };
