@@ -1,5 +1,6 @@
 const sessionsController = require('../controllers').sessions;
 const drillsController = require('../controllers').drills;
+const teamsController = require('../controllers').teams;
 
 module.exports = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
@@ -12,4 +13,7 @@ module.exports = (app) => {
 
   // drills
   app.post('/api/sessions/:session_id/drills', drillsController.create);
+
+  // teams
+  app.post('/api/teams', teamsController.create);
 };

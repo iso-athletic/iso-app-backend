@@ -50,12 +50,12 @@ module.exports = {
           as: 'player_id',
         },
       },
-      organization_id: {
+      drill_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Organizations',
+          model: 'Drills',
           key: 'id',
-          as: 'organization_id',
+          as: 'drill_id',
         },
       },
       createdAt: {

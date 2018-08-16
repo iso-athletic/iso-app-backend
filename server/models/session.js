@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'session_id',
       as: 'drills',
     });
+    Session.belongsTo(models.Organization, {
+      foreignKey: 'organization_id',
+      onDelete: 'CASCADE',
+    });
   };
   return Session;
 };

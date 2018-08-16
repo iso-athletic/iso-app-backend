@@ -13,6 +13,14 @@ module.exports = {
       end_time: {
         type: Sequelize.DATE
       },
+      organization_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Organizations',
+          key: 'id',
+          as: 'organization_id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
