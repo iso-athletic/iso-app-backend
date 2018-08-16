@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./bin/www",
-    "test": "mocha"
+    "test": "mocha --exit",
+    "test-coverage": "nyc --reporter=html mocha --exit",
+    "hard-test": "nyc --check-coverage --lines 75 mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "chai": "^3.2.0",
     "chai-http": "^1.0.0",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "nyc": "^12.0.2"
   }
 }
