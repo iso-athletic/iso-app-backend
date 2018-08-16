@@ -6,7 +6,7 @@ module.exports = {
       .create({
         start_time: req.body.start_time,
       })
-      .then(todo => res.status(201).send(todo))
+      .then(session => res.status(201).send(session))
       .catch(error => res.status(400).send(error));
   },
   getAll(req, res) {
