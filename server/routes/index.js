@@ -1,6 +1,7 @@
 const sessionsController = require('../controllers').sessions;
 const drillsController = require('../controllers').drills;
 const teamsController = require('../controllers').teams;
+const playersController = require('../controllers').players;
 
 module.exports = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
@@ -16,4 +17,7 @@ module.exports = (app) => {
 
   // teams
   app.post('/api/teams', teamsController.create);
+
+  // players
+  app.get('/api/players/:organization_id', playersController.getPlayersByOrganizationId)
 };

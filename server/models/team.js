@@ -17,26 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'drill_id',
         onDelete: 'CASCADE',
       });
-      Team.hasOne(models.Player, {
-        foreignKey: 'player1_id',
-        as: 'player1'
-      });
-      Team.hasOne(models.Player, {
-        foreignKey: 'player2_id',
-        as: 'player2'
-      });
-      Team.hasOne(models.Player, {
-        foreignKey: 'player3_id',
-        as: 'player3'
-      });
-      Team.hasOne(models.Player, {
-        foreignKey: 'player4_id',
-        as: 'player4'
-      });
-      Team.hasOne(models.Player, {
-        foreignKey: 'player5_id',
-        as: 'player5'
-      });
     };
     return Team;
   };
