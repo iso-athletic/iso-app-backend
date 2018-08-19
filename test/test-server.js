@@ -6,7 +6,7 @@ var should = chai.should();
 chai.use(chaiHttp);
 
 describe('Session Tests', () => {
-  it('should get all sessions on request to /sessions GET', (done) => {
+  it('should HAPPY PATH on request to /sessions GET', (done) => {
     chai.request(server)
       .get('/sessions')
       .end(function (err, res) {
@@ -15,7 +15,15 @@ describe('Session Tests', () => {
         done();
       });
   });
-  it('should get a single session on request to /:session_id:/sessions GET');
+  it('should HAPPY PATH on request to /:session_id/sessions GET', (done) => {
+    chai.request(server)
+      .get('/1/sessions')
+      .end(function (err, res) {
+        res.should.have.status(200);
+        res.should.be.json;
+        done();
+      });
+  });
   it('should create a new session on request to /sessions POST');
   it('should update a session on request to /:session_id:/sessions PUT');
   it('should delete a session on request to /:session_id:/sessions DELETE')
@@ -30,9 +38,9 @@ describe('Drills Tests', () => {
 })
 
 describe('Players Tests', () => {
-  it('should get all players associated with an organization on request to /players/:organization_id GET', (done) => {
+  it('should HAPPY PATH on request to /players/:organization_id GET', (done) => {
     chai.request(server)
-      .get('/players/1')
+      .get('/players/1/organizations')
       .end(function (err, res) {
         res.should.have.status(200);
         res.should.be.json;
