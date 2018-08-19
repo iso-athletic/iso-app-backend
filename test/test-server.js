@@ -30,7 +30,7 @@ describe('Drills Tests', () => {
 })
 
 describe('Players Tests', () => {
-  it('should get all players associated with an organization on request to /players/:organization_id: GET', (done) => {
+  it('should get all players associated with an organization on request to /players/:organization_id GET', (done) => {
     chai.request(server)
       .get('/players/1')
       .end(function (err, res) {
@@ -38,5 +38,5 @@ describe('Players Tests', () => {
         res.should.be.json;
         done();
       });
-  })
+  });
 })
