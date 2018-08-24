@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon ./bin/www",
+    "test": "mocha --exit",
+    "test-coverage": "nyc --reporter=html mocha --exit",
+    "hard-test": "nyc --check-coverage --lines 75 mocha --exit"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,9 @@
     "sequelize": "^4.38.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "chai": "^3.2.0",
+    "chai-http": "^1.0.0",
+    "nodemon": "^1.18.3",
+    "nyc": "^12.0.2"
   }
 }

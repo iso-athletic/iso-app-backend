@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'session_id',
       onDelete: 'CASCADE',
     });
+    Drill.hasMany(models.Team, {
+      foreignKey: 'drill_id',
+      as: 'teams',
+    });
   };
   return Drill;
 };
