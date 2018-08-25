@@ -9,7 +9,7 @@ module.exports = {
       .then(players => {
         if (!players) {
           return res.status(404).send({
-            message: 'Players Not Found',
+            message: 'No players found',
           });
         }
         return res.status(200).send(players);
