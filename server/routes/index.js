@@ -23,5 +23,5 @@ module.exports = (app) => {
   app.post('/api/teams', teamsController.create);
 
   // organizations
-  app.get('/api/organization/:organization_id/players', organizationsController.getPlayersByOrganizationId)
+  app.get('/api/organizations/:organization_id/players', organizationsController.getPlayersByOrganizationId)
 };
