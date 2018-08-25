@@ -4,7 +4,7 @@ const Action = require('../models').Action;
 // since it won't change that much session to session
 
 module.exports = {
-  GetAll(req, res) {
+  getAll(req, res) {
     return Action
       .findAll({attributes: ['type']})
       .then(action => res.status(200).send(action))
@@ -13,7 +13,7 @@ module.exports = {
         console.log('error');
       });
   },
-  NewAction(req, res) {
+  create(req, res) {
     let newActionType = req.body.type;
     return Action
       .findAll({attributes: ['type']})

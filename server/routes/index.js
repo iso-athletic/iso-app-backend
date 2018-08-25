@@ -15,8 +15,8 @@ module.exports = (app) => {
   // drills
   app.post('/api/sessions/:session_id/drills', drillsController.create);
 
-  app.get('/api/actions', actionsController.GetAll);
-  app.post('/api/new/actions', actionsController.NewAction);
+  app.get('/api/actions', actionsController.getAll);
+  app.post('/api/actions', actionsController.create);
   
   // teams
   app.post('/api/teams', teamsController.create);
