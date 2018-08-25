@@ -38,7 +38,7 @@ describe('Drills Tests', () => {
 })
 
 describe('Players Tests', () => {
-  it('should HAPPY PATH on request to /players/:organization_id GET', (done) => {
+  it('should HAPPY PATH on request to /players/:organization_id/organization GET', (done) => {
     chai.request(server)
       .get('/players/1/organizations')
       .end(function (err, res) {
