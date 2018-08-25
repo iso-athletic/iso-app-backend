@@ -37,10 +37,10 @@ describe('Drills Tests', () => {
   it('should delete a drill on request to /:drill_id:/drills DELETE')
 })
 
-describe('Players Tests', () => {
-  it('should HAPPY PATH on request to /players/:organization_id/organization GET', (done) => {
+describe('Organizations Tests', () => {
+  it('should HAPPY PATH on request to /organizations/:organization_id/players GET', (done) => {
     chai.request(server)
-      .get('/players/1/organizations')
+      .get('/organization/1/players')
       .end(function (err, res) {
         res.should.have.status(200);
         res.should.be.json;

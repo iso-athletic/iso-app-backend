@@ -1,11 +1,11 @@
 const sessions = require('./sessions');
 const drills = require('./drills');
 const teams = require('./teams');
-const players = require('./players');
+const organizations = require('./organizations');
 
 module.exports = {
   sessions,
   drills,
   teams,
-  players
+  organizations
 };
