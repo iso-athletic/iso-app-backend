@@ -1,5 +1,6 @@
 const sessionsController = require('../controllers').sessions;
 const drillsController = require('../controllers').drills;
+const actionsController = require('../controllers').actions;
 const teamsController = require('../controllers').teams;
 const organizationsController = require('../controllers').organizations;
 
@@ -15,9 +16,12 @@ module.exports = (app) => {
   // drills
   app.post('/api/sessions/:session_id/drills', drillsController.create);
 
+  app.get('/api/actions', actionsController.getAll);
+  app.post('/api/actions', actionsController.create);
+  
   // teams
   app.post('/api/teams', teamsController.create);
 
   // organizations
-  app.get('/api/organization/:organization_id/players', organizationsController.getPlayersByOrganizationId)
+  app.get('/api/organizations/:organization_id/players', organizationsController.getPlayersByOrganizationId)
 };

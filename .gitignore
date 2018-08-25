@@ -7,6 +7,7 @@ yarn-error.log
 words.js
 .nyc_output/
 coverage/
+.vscode/
 
 # Editor directories and files
 .idea
