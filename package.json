@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
     "test": "mocha --exit",
     "test-coverage": "nyc --reporter=html mocha --exit",
     "hard-test": "nyc --check-coverage --lines 75 mocha --exit"
