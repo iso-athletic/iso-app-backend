@@ -10,24 +10,33 @@ module.exports = (app) => {
     message: 'Welcome to the Iso Athletic API!',
   }));
 
-  // sessions
+  // --- sessions --- //
+  // creates a new session
   app.post('/api/sessions', sessionsController.create);
+  // gets all sessions
   app.get('/api/sessions', sessionsController.getAll);
   app.put('/api/sessions/:session_id', sessionsController.update);
 
-  // drills
+  // -- drills -- //
+  // creates a new drill associated with a session
   app.post('/api/sessions/:session_id/drills', drillsController.create);
   app.put('/api/drills/:drill_id', drillsController.update);
 
+  // --- actions --- //
+  // gets all actions
   app.get('/api/actions', actionsController.getAll);
+  // creates a new action
   app.post('/api/actions', actionsController.create);
   
-  // teams
+  // --- teams --- //
+  // creates a new team
   app.post('/api/teams', teamsController.create);
 
-  // organizations
-  app.get('/api/organizations/:organization_id/players', organizationsController.getPlayersByOrganizationId);
+  // --- players --- //
+  // gets all players associated with an organization
+  app.get('/api/organizations/:organization_id/players', organizationsController.getPlayersByOrganizationId)
 
-  // events
+  // --- events --- //
+  // creates a new event
   app.post('/api/drills/:drill_id/events', eventsController.create);
 };
