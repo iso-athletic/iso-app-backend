@@ -14,10 +14,12 @@ module.exports = (app) => {
   app.post('/api/sessions', sessionsController.create);
   app.get('/api/sessions', sessionsController.getAll);
   app.put('/api/sessions/:session_id', sessionsController.update);
+  app.delete('/api/sessions/:session_id', sessionsController.delete);
 
   // drills
   app.post('/api/sessions/:session_id/drills', drillsController.create);
   app.put('/api/drills/:drill_id', drillsController.update);
+  app.delete('/api/drills/:drill_id', drillsController.delete);
 
   app.get('/api/actions', actionsController.getAll);
   app.post('/api/actions', actionsController.create);
