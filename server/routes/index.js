@@ -16,11 +16,13 @@ module.exports = (app) => {
   // gets all sessions
   app.get('/api/sessions', sessionsController.getAll);
   app.put('/api/sessions/:session_id', sessionsController.update);
+  app.delete('/api/sessions/:session_id', sessionsController.delete);
 
   // -- drills -- //
   // creates a new drill associated with a session
   app.post('/api/sessions/:session_id/drills', drillsController.create);
   app.put('/api/drills/:drill_id', drillsController.update);
+  app.delete('/api/drills/:drill_id', drillsController.delete);
 
   // --- actions --- //
   // gets all actions

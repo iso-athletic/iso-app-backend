@@ -28,7 +28,14 @@ module.exports = {
         id: req.params.drill_id
       } 
     })
-    .then(drill => res.status(200).send(drill))
+    .then(drill => res.status(202).send(drill))
+    .catch(error => res.status(400).send(error));
+  },
+  delete(req, res){
+    Drill.destroy({
+      where: { id: req.params.drill_id }
+    })
+    .then(drill => res.status(204).send(drill.id))
     .catch(error => res.status(400).send(error));
   }
 };

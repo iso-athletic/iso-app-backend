@@ -21,7 +21,14 @@ module.exports = {
       end_time: req.body.end_time
     },{ returning: true, where: {id: req.params.session_id} }
     )
-    .then(sessions => res.status(200).send(sessions))
+    .then(sessions => res.status(202).send(sessions))
+    .catch(error => res.status(400).send(error));
+  },
+  delete(req, res) {
+    Session.destroy({
+      where: { id: req.params.session_id }
+    })
+    .then(sessions => res.status(204).send(sessions.id))
     .catch(error => res.status(400).send(error));
   }
 };
