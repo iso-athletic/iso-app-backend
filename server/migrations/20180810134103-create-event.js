@@ -8,12 +8,12 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             action_id: {
-                type: Sequelize.INTEGER,
-                references: {
-                    model: 'Actions',
-                    key: 'id',
-                    as: 'action_id',
-                },
+                type: Sequelize.STRING,
+                // references: {
+                //     model: 'Actions',
+                //     key: 'id',
+                //     as: 'action_id',
+                // },
             },
             player_id: {
                 type: Sequelize.INTEGER,
@@ -43,7 +43,7 @@ module.exports = {
                 type: Sequelize.JSON,
             },
             timestamp: {
-                type: Sequelize.DATE
+                type: Sequelize.STRING
             },
             createdAt: {
                 allowNull: false,

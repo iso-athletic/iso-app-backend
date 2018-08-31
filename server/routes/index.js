@@ -15,10 +15,12 @@ module.exports = (app) => {
   app.post('/api/sessions', sessionsController.create);
   // gets all sessions
   app.get('/api/sessions', sessionsController.getAll);
+  app.put('/api/sessions/:session_id', sessionsController.update);
 
   // -- drills -- //
   // creates a new drill associated with a session
   app.post('/api/sessions/:session_id/drills', drillsController.create);
+  app.put('/api/drills/:drill_id', drillsController.update);
 
   // --- actions --- //
   // gets all actions
@@ -36,5 +38,5 @@ module.exports = (app) => {
 
   // --- events --- //
   // creates a new event
-  app.post('/api/events', eventsController.create);
+  app.post('/api/drills/:drill_id/events', eventsController.create);
 };
