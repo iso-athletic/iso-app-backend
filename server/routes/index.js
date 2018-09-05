@@ -18,6 +18,10 @@ module.exports = (app) => {
   app.put('/api/sessions/:session_id', sessionsController.update);
   app.delete('/api/sessions/:session_id', sessionsController.delete);
 
+  // --- organizations --- //
+  // gets organization info
+  app.get('/api/organizations/:organization_id', organizationsController.getOrganizationInfo);
+
   // -- drills -- //
   // creates a new drill associated with a session
   app.post('/api/sessions/:session_id/drills', drillsController.create);
