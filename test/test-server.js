@@ -81,6 +81,19 @@ describe('Actions Test', () => {
         done();
       });
   });
+  it('should HAPPY PATH on request to /actions POST', (done) => {
+    chai.request(server)
+      .post('/api/actions')
+      .send({ name: 'test'})
+      .end((res) => {
+        res.should.have.status(201)
+        chai.request(server)
+          .delete('/api/actions' + res.body.id)
+          .end(() => {
+            done()
+          })
+      })
+  })
 });
 
 describe('Drills Tests', () => {
