@@ -14,5 +14,14 @@ module.exports = {
       })
       .then(team => res.status(201).send(team))
       .catch(error => res.status(400).send(error));
+},
+
+  delete(req, res) {
+    Team.destroy({
+      where: { id: req.params.team_id }
+    })
+    .then(team => res.status(204).send(team.id))
+    .catch(error => res.status(400).send(error));
   }
+
 };
