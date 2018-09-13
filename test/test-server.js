@@ -150,3 +150,28 @@ describe('Organizations Tests', () => {
       });
   });
 });
+
+describe('Teams test', () => {
+  it('should HAPPY PATH on request to /teams POST', (done) => {
+    chai.request(server)
+      .post('/api/teams')
+      .send({ player1_id: 3})
+      .end((res) => {
+        res.should.have.status(201);
+        chai.request(server)
+        .delete('/api/teams/' + res.body.id)
+        .end(() => {
+          done();
+        })
+      });
+  })
+  it('should ERROR on request to /teams POST when player ID invalid', (done) => {
+    chai.request(server)
+      .post('/api/teams')
+      .send({ player1_id: 0})
+      .end((res) => {
+        res.should.have.status(400);
+        done();
+      })
+  });
+})
