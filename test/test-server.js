@@ -84,7 +84,7 @@ describe('Actions Test', () => {
   it('should HAPPY PATH on request to /actions POST', (done) => {
     chai.request(server)
       .post('/api/actions')
-      .send({ name: 'test'})
+      .send({ type: 'test'})
       .end((res) => {
         res.should.have.status(201)
         chai.request(server)
@@ -93,7 +93,7 @@ describe('Actions Test', () => {
             done()
           })
       })
-  })
+  });
 });
 
 describe('Drills Tests', () => {
@@ -152,6 +152,46 @@ describe('Drills Tests', () => {
 
 })
 
+describe('Events Tests', () => {
+
+  var drillId = -1;
+
+  before((done) => {
+    chai.request(server)
+      .post('/api/sessions/1/drills')
+      .end((res) => {
+        drillId = res.body.id;
+        console.log(drillId);
+        res.should.have.status(201)
+        done();
+      })
+  });
+
+  after((done) => {
+    chai.request(server)
+      .delete('/api/drills/' + drillId)
+      .end((res) => {
+        res.should.have.status(204)
+        done();
+      })
+  });
+
+  it('should HAPPY PATH on request to /drills/:drill_id/events POST', (done) => {
+    chai.request(server)
+      .post('/api/drills/' + drillId + '/events')
+      .send({ action_id: 'Missed FT'})
+      .end((res) => {
+        res.should.have.status(201)
+        chai.request(server)
+          .delete('/api/events/' + res.body.id)
+          .end((respo) => {
+            respo.should.have.status(204)
+            done();
+          })
+      })
+  });
+});
+
 describe('Organizations Tests', () => {
   it('should HAPPY PATH on request to /organizations/:organization_id/players GET', (done) => {
     chai.request(server)
@@ -165,6 +205,7 @@ describe('Organizations Tests', () => {
 });
 
 describe('Teams test', () => {
+
   it('should HAPPY PATH on request to /teams POST', (done) => {
     chai.request(server)
       .post('/api/teams')

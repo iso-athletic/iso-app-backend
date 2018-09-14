@@ -49,4 +49,6 @@ module.exports = (app) => {
   // --- events --- //
   // creates a new event
   app.post('/api/drills/:drill_id/events', eventsController.create);
+  // deletes an event
+  app.delete('/api/events/:event_id', eventsController.delete);
 };
