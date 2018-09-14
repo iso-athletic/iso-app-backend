@@ -33,6 +33,8 @@ module.exports = (app) => {
   app.get('/api/actions', actionsController.getAll);
   // creates a new action
   app.post('/api/actions', actionsController.create);
+  // deletes an action
+  app.delete('/api/actions/:action_id', actionsController.delete);
 
   // --- teams --- //
   // creates a new team
@@ -47,4 +49,6 @@ module.exports = (app) => {
   // --- events --- //
   // creates a new event
   app.post('/api/drills/:drill_id/events', eventsController.create);
+  // deletes an event
+  app.delete('/api/events/:event_id', eventsController.delete);
 };

@@ -27,10 +27,18 @@ module.exports = {
           Action
             .build({type: newActionType})
             .save()
-            .then(res.status(200).send('Action type: ' + newActionType + ' successfully added'))
+            .then(res.status(201).send('Action type: ' + newActionType + ' successfully added'))
             .catch(error => res.status(400).send(error));
         }
       })
       .catch(error => res.status(400).send(error));
+  },
+
+  delete(req, res) {
+    Action.destroy({
+      where: { id: req.params.action_id }
+    })
+    .then(action => res.status(204).send(action_id))
+    .catch(error => res.status(400).send(error))
   }
-}
+};
