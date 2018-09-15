@@ -11,26 +11,29 @@ module.exports = {
       .then(drill => res.status(201).send(drill))
       .catch(error => res.status(400).send(error));
   },
+
   getAll(req, res) {
     return Drill
       .all()
       .then(drill => res.status(200).send(drill))
       .catch(error => res.status.send(error));
   },
+
   update(req, res) {
     return Drill
     .update({
       end_time: req.body.end_time
     },
     { returning: true,
-      where: 
+      where:
       {
         id: req.params.drill_id
-      } 
+      }
     })
     .then(drill => res.status(202).send(drill))
     .catch(error => res.status(400).send(error));
   },
+
   delete(req, res){
     Drill.destroy({
       where: { id: req.params.drill_id }
