@@ -26,6 +26,7 @@ module.exports = (app) => {
   // creates a new drill associated with a session
   app.post('/api/sessions/:session_id/drills', drillsController.create);
   app.put('/api/drills/:drill_id', drillsController.update);
+  //deletes a drill
   app.delete('/api/drills/:drill_id', drillsController.delete);
 
   // --- actions --- //
@@ -44,7 +45,13 @@ module.exports = (app) => {
 
   // --- players --- //
   // gets all players associated with an organization
-  app.get('/api/organizations/:organization_id/players', organizationsController.getPlayersByOrganizationId)
+  app.get('/api/organizations/:organization_id/players', organizationsController.getPlayersByOrganizationId);
+  // creates a new player
+  app.post('/api/organizations/:organization_id/players', organizationsController.createPlayer);
+  // updates a player's information
+  app.put('/api/players/:player_id', organizationsController.updatePlayer);
+  // deletes a players
+  app.delete('/api/players/:player_id', organizationsController.deletePlayer);
 
   // --- events --- //
   // creates a new event

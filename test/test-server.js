@@ -204,6 +204,44 @@ describe('Organizations Tests', () => {
   });
 });
 
+describe('Player Tests', () => {
+
+  it('should HAPPY PATH on request to /organizations/:organization_id/players POST', (done) => {
+    chai.request(server)
+      .post('/api/organizations/1/players')
+      .send({ jersey_number: 8})
+      .end((res) => {
+        res.should.have.status(201);
+        chai.request(server)
+          .delete('/api/players/' + res.body.id)
+          .end((resp) => {
+            resp.should.have.status(204)
+            done();
+          })
+      })
+  })
+
+  it('should UPDATE on request to /players PUT', (done) => {
+    chai.request(server)
+      .post('/api/organizations/1/players')
+      .send({ jersey_number: 8})
+      .end((res) => {
+        chai.request(server)
+          .put('/api/players/' + res.body.id)
+          .send({ jersey_number: 19})
+          .end((resp) => {
+            resp.should.have.status(202);
+            chai.request(server)
+              .delete('/api/players/' + res.body.id)
+              .end((respo) => {
+                respo.should.have.status(204)
+                done();
+              })
+          })
+      })
+  })
+})
+
 describe('Teams test', () => {
 
   it('should HAPPY PATH on request to /teams POST', (done) => {
@@ -219,6 +257,7 @@ describe('Teams test', () => {
         })
       });
   })
+
   it('should ERROR on request to /teams POST when player ID invalid', (done) => {
     chai.request(server)
       .post('/api/teams')
