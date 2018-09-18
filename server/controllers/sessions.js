@@ -10,12 +10,23 @@ module.exports = {
       .then(session => res.status(201).send(session))
       .catch(error => res.status(400).send(error));
   },
+
   getAll(req, res) {
     return Session
-      .all()
-      .then(sessions => res.status(200).send(sessions))
+      .all( {
+        where: {
+          start_time: {
+            $ne: null,
+          },
+          end_time: {
+            $ne: null,
+          },
+        }
+      })
+      .then(session => res.status(200).send(session))
       .catch(error => res.status(400).send(error));
   },
+
   update(req, res) {
     return Session.update({
       end_time: req.body.end_time

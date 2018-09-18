@@ -7,10 +7,11 @@ var should = chai.should();
 chai.use(chaiHttp);
 
 describe('Session Tests', () => {
-  it('should HAPPY PATH on request to /sessions GET', (done) => {
+
+  it('should HAPPY PATH on request to /sessions GETALL', (done) => {
     chai.request(server)
       .get('/api/sessions')
-      .end(function (err, res) {
+      .end((res) => {
         res.should.have.status(200);
         res.should.be.json;
         done();

@@ -13,9 +13,11 @@ module.exports = (app) => {
   // --- sessions --- //
   // creates a new session
   app.post('/api/sessions', sessionsController.create);
-  // gets all sessions
+  // gets all sessions that were started and completed
   app.get('/api/sessions', sessionsController.getAll);
+  // updates a session
   app.put('/api/sessions/:session_id', sessionsController.update);
+  // deletes a session
   app.delete('/api/sessions/:session_id', sessionsController.delete);
 
   // --- organizations --- //
