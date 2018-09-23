@@ -13,8 +13,6 @@ module.exports = (app) => {
   // --- sessions --- //
   // creates a new session
   app.post('/api/sessions', sessionsController.create);
-  // gets all sessions that were started and completed
-  app.get('/api/sessions', sessionsController.getAll);
   // updates a session
   app.put('/api/sessions/:session_id', sessionsController.update);
   // deletes a session
@@ -23,6 +21,8 @@ module.exports = (app) => {
   // --- organizations --- //
   // gets organization info
   app.get('/api/organizations/:organization_id', organizationsController.getOrganizationInfo);
+  // gets all sessions that were started and completed
+  app.get('/api/organizations/:organization_id/sessions', sessionsController.getAll);
 
   // -- drills -- //
   // creates a new drill associated with a session

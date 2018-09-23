@@ -15,6 +15,7 @@ module.exports = {
     return Session
       .all( {
         where: {
+          organization_id: req.params.organization_id,
           start_time: {
             $ne: null,
           },
