@@ -4,6 +4,7 @@ const actionsController = require('../controllers').actions;
 const teamsController = require('../controllers').teams;
 const organizationsController = require('../controllers').organizations;
 const eventsController = require('../controllers').events;
+const statsController = require('../controllers').stats;
 
 module.exports = (app) => {
   app.get('/api', (req, res) => res.status(200).send({
@@ -60,4 +61,8 @@ module.exports = (app) => {
   app.post('/api/drills/:drill_id/events', eventsController.create);
   // deletes an event
   app.delete('/api/events/:event_id', eventsController.delete);
+
+  // --- stats --- //
+  // gets all stats associated with a drill
+  app.get('/api/drills/:drill_id/stats', statsController.getAll);
 };

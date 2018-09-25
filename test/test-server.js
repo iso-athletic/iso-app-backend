@@ -241,7 +241,7 @@ describe('Player Tests', () => {
           })
       })
   })
-})
+});
 
 describe('Teams test', () => {
 
@@ -268,4 +268,16 @@ describe('Teams test', () => {
         done();
       })
   });
-})
+});
+
+describe('Stats test', () => {
+  it('should HAPPY PATH on request to /stats GET', (done) => {
+    chai.request(server)
+      .get('/api/drills/369/stats')
+      .end((res) => {
+        res.should.have.status(200);
+        res.should.be.json;
+        done();
+      })
+  });
+});
