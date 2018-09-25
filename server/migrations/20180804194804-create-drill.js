@@ -18,7 +18,7 @@ module.exports = {
       },
       session_id: {
         type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
+        onDelete: 'cascade',
         references: {
           model: 'Sessions',
           key: 'id',

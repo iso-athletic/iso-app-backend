@@ -12,6 +12,7 @@ module.exports = {
       },
       player1_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'Players',
           key: 'id',
@@ -20,6 +21,7 @@ module.exports = {
       },
       player2_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'Players',
           key: 'id',
@@ -28,6 +30,7 @@ module.exports = {
       },
       player3_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'Players',
           key: 'id',
@@ -36,6 +39,7 @@ module.exports = {
       },
       player4_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'Players',
           key: 'id',
@@ -44,6 +48,7 @@ module.exports = {
       },
       player5_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'Players',
           key: 'id',
@@ -52,6 +57,7 @@ module.exports = {
       },
       drill_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'Drills',
           key: 'id',

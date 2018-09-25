@@ -18,6 +18,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'drill_id',
       as: 'teams',
     });
+    Drill.hasMany(models.Event, {
+      foreignKey: 'drill_id',
+      as: 'events',
+      onDelete: 'CASCADE',
+      hooks: true
+    });
   };
   return Drill;
 };

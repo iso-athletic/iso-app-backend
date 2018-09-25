@@ -15,10 +15,11 @@ module.exports = {
       },
       organization_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: {
           model: 'Organizations',
           key: 'id',
-          as: 'organization_id',
+          as: 'organization_id'
         },
       },
       createdAt: {

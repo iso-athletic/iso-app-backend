@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   
     Event.associate = (models) => {
       Event.belongsTo(models.Drill, {
-        foreignKey: 'drill_id',
+        foreignKey: 'drill_id'
       });
     };
     return Event;

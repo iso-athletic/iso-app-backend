@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     Session.hasMany(models.Drill, {
       foreignKey: 'session_id',
       as: 'drills',
+      onDelete: 'CASCADE',
+      hooks: true
     });
     Session.belongsTo(models.Organization, {
       foreignKey: 'organization_id',
