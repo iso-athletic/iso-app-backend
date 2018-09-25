@@ -100,7 +100,7 @@ describe('Actions Test', () => {
 describe('Drills Tests', () => {
   it('should create a new drill on request to /drills POST', (done) => {
     chai.request(server)
-      .post('/api/sessions/1/drills')
+      .post('/api/sessions/359/drills')
       .send({
         type: "scrimmage",
         start_time: Sequelize.NOW,
@@ -131,7 +131,7 @@ describe('Drills Tests', () => {
 
   it('should update a drill on request to /:drill_id:/drills PUT', (done) => {
     chai.request(server)
-      .post('/api/sessions/1/drills')
+      .post('/api/sessions/359/drills')
       .send({
         type: "scrimmage",
         start_time: Sequelize.NOW
@@ -159,7 +159,7 @@ describe('Events Tests', () => {
 
   before((done) => {
     chai.request(server)
-      .post('/api/sessions/1/drills')
+      .post('/api/sessions/359/drills')
       .end((res) => {
         drillId = res.body.id;
         console.log(drillId);
