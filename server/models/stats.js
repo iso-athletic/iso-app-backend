@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Stats = sequelize.define('Stats', {
     player_name: DataTypes.STRING,
     date_scrimmage: DataTypes.DATE,
+    drill_id: DataTypes.BIGINT,
     fg: DataTypes.BIGINT,
     fga: DataTypes.BIGINT,
     'fg%': DataTypes.DOUBLE,
