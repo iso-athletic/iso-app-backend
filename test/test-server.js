@@ -241,7 +241,7 @@ describe('Player Tests', () => {
           })
       })
   })
-})
+});
 
 describe('Teams test', () => {
 
@@ -268,4 +268,16 @@ describe('Teams test', () => {
         done();
       })
   });
-})
+});
+
+ describe('Stats test', () => {
+  it('should HAPPY PATH on request to /stats GET', (done) => {
+    chai.request(server)
+      .get('/api/organizations/1/stats/1537750318-1538009518')
+      .end((res) => {
+        res.should.have.status(200);
+        res.should.be.json;
+        done();
+      })
+  });
+});

@@ -4,6 +4,7 @@ const actions = require('./actions')
 const teams = require('./teams');
 const organizations = require('./organizations');
 const events = require('./events');
+const stats = require('./stats');
 
 module.exports = {
   sessions,
@@ -11,5 +12,6 @@ module.exports = {
   actions,
   teams,
   organizations,
-  events
+  events,
+  stats
 };
