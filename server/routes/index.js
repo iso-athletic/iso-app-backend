@@ -63,6 +63,6 @@ module.exports = (app) => {
   app.delete('/api/events/:event_id', eventsController.delete);
 
   // --- stats --- //
-  // gets all stats associated with a drill
-  app.get('/api/drills/:drill_id/stats', statsController.getAll);
+  // gets all stats from drills over specific dates
+  app.get('/api/organizations/:organization_id/stats/:date_from-:date_to', statsController.getAll);
 };

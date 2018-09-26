@@ -33,15 +33,15 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: "updated_at"
   });
 
-  Stats.associate = (models) => {
-    Stats.belongsTo(models.Drill, {
-      foreignKey: 'drill_id',
-      onDelete: 'CASCADE',
-    });
-    Stats.belongsTo(models.Player, {
-      foreignKey: 'player_id',
-      onDelete: 'CASCADE',
-    });
-  };
+  // Stats.associate = (models) => {
+  //   Stats.belongsTo(models.Drill, {
+  //     foreignKey: 'drill_id',
+  //     onDelete: 'CASCADE',
+  //   });
+  //   Stats.belongsTo(models.Player, {
+  //     foreignKey: 'player_id',
+  //     onDelete: 'CASCADE',
+  //   });
+  // };
   return Stats;
 };
