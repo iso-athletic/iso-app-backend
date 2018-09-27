@@ -16,7 +16,7 @@ module.exports = {
           [Stats.sequelize.fn('SUM', Stats.sequelize.col('3p')), 'threep'],
           [Stats.sequelize.fn('SUM', Stats.sequelize.col('3pa')), 'threepa'],
           [Stats.sequelize.fn('AVG', Stats.sequelize.col('3p%')), 'threepp'],
-        //  [Stats.sequelize.fn('SUM', Stats.sequelize.col('3par')), '3par'],
+          [Stats.sequelize.fn('SUM', Stats.sequelize.col('3par')), '3par'],
           [Stats.sequelize.fn('SUM', Stats.sequelize.col('pts')), 'pts'],
           [Stats.sequelize.fn('AVG', Stats.sequelize.col('ts%')), 'tsp'],
           [Stats.sequelize.fn('AVG', Stats.sequelize.col('efg%')), 'efgp'],
@@ -43,5 +43,11 @@ module.exports = {
       })
       .then(stats => res.status(200).send(stats))
       .catch(error => res.status(400).send(error));
+    },
+
+    updateStatsTable(req, res) {
+      Stats.sequelize.query('SELECT updateStatsTable()', { type: Stats.sequelize.QueryTypes.SELECT })
+      .then(res.status(202).send())
+      .catch(error => res.status(400).send())
     }
   }
