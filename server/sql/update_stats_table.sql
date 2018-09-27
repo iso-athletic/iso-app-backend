@@ -1,6 +1,8 @@
-CREATE FUNCTION updateStatsTable()
+CREATE OR REPLACE FUNCTION updateStatsTable()
 RETURNS VOID
 AS $$
+
+DELETE FROM "Stats";
 
 INSERT INTO "Stats"
 
@@ -112,6 +114,3 @@ ORDER BY date_scrimmage, drill_id;
 
 $$
 LANGUAGE SQL;
-
-
-
