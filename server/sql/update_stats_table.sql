@@ -1,8 +1,8 @@
-CREATE OR REPLACE FUNCTION updateStatsTable()
+CREATE OR REPLACE FUNCTION updateStatsTable(target_organization_id integer, target_date_scrimmage date)
+
 RETURNS VOID
 AS $$
-
-DELETE FROM "Stats";
+BEGIN
 
 INSERT INTO "Stats"
 
@@ -50,6 +50,7 @@ SELECT temp1.name, temp1.organization_id, temp1.id AS player_id, temp2.team, tem
             INNER JOIN
             "Organizations" t2 ON
 t1.organization_id = t2.id
+WHERE t1.organization_id=target_organization_id
 ) temp1
         JOIN
         (SELECT distinct(playerteam.team), ev.drill_id, CAST (created_at AS DATE) AS date_scrimmage
@@ -62,6 +63,7 @@ t1.organization_id = t2.id
 t1.organization_id = t2.id) playerteam
             ON playerteam.id=ev.player_id) temp2
         ON temp1.team = temp2.team
+		WHERE date_scrimmage=target_date_scrimmage
 )  pairs
 
     LEFT JOIN
@@ -108,9 +110,12 @@ SELECT player_id, date_scrimmage, drill_id,-- team_id,
             COUNT(CASE WHEN action_id LIKE 'Turnover' THEN 1 ELSE NULL END) AS "tov",
             COUNT(CASE WHEN action_id LIKE 'Foul' THEN 1 ELSE NULL END) AS "pf"
         FROM "Events"
+		WHERE CAST (created_at AS DATE)=target_date_scrimmage
         GROUP BY player_id, drill_id, date_scrimmage,team_id) sub ) drstats
     ON drstats.player_id = pairs.player_id AND drstats.date_scrimmage=pairs.date_scrimmage AND drstats.drill_id=pairs.drill_id
 ORDER BY date_scrimmage, drill_id;
 
+END;
+
 $$
-LANGUAGE SQL;
+LANGUAGE plpgsql;

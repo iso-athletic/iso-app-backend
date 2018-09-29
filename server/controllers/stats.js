@@ -46,7 +46,14 @@ module.exports = {
     },
 
     updateStatsTable(req, res) {
-      Stats.sequelize.query('SELECT updateStatsTable()', { type: Stats.sequelize.QueryTypes.SELECT })
+      Stats.sequelize.query('SELECT updateStatsTable(:target_organization_id, :target_date_scrimmage)', 
+      { replacements: 
+        {
+          target_organization_id: req.params.organization_id,
+          target_date_scrimmage: req.body.date
+        }
+      },
+      { type: Stats.sequelize.QueryTypes.SELECT })
       .then(res.status(202).send())
       .catch(error => res.status(400).send())
     }
