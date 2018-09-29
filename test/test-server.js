@@ -98,9 +98,33 @@ describe('Actions Test', () => {
 });
 
 describe('Drills Tests', () => {
+
+  var sessionId = -1;
+
+  before((done) => {
+    chai.request(server)
+      .post('/api/sessions')
+      .send({
+        start_time: Sequelize.NOW,
+        organization_id: 1
+      })
+      .end((res) => {
+        sessionId = res.body.id;
+        done();
+      })
+  });
+
+  after((done) => {
+    chai.request(server)
+      .delete('/api/sessions/' + sessionId)
+      .end((resp) => {
+        done();
+      })
+  })
+
   it('should create a new drill on request to /drills POST', (done) => {
     chai.request(server)
-      .post('/api/sessions/359/drills')
+      .post('/api/sessions/' + sessionId + '/drills')
       .send({
         type: "scrimmage",
         start_time: Sequelize.NOW,
@@ -131,7 +155,7 @@ describe('Drills Tests', () => {
 
   it('should update a drill on request to /:drill_id:/drills PUT', (done) => {
     chai.request(server)
-      .post('/api/sessions/359/drills')
+      .post('/api/sessions/' + sessionId + '/drills')
       .send({
         type: "scrimmage",
         start_time: Sequelize.NOW
@@ -162,7 +186,6 @@ describe('Events Tests', () => {
       .post('/api/sessions/359/drills')
       .end((res) => {
         drillId = res.body.id;
-        console.log(drillId);
         res.should.have.status(201)
         done();
       })
