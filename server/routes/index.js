@@ -65,5 +65,6 @@ module.exports = (app) => {
   // --- stats --- //
   // gets all stats from drills over specific dates
   app.get('/api/organizations/:organization_id/stats/:date_from-:date_to', statsController.getAll);
-  app.put('/api/stats', statsController.updateStatsTable);
+  // updates the stats table with stats from just completed practice
+  app.put('/api/organizations/:organization_id/stats', statsController.updateStatsTable);
 };
