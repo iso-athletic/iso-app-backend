@@ -43,7 +43,8 @@ SELECT pairs.name AS "player_name",
     '' AS updated_at
 FROM
     (
-SELECT temp1.name, temp1.organization_id, temp1.id AS player_id, temp2.team, temp2.drill_id, temp2.date_scrimmage
+	SELECT max(temp1.name) AS name, max(temp1.organization_id) AS organization_id, max(temp1.id) AS player_id, 
+		   max(temp2.team) AS team, max(temp2.drill_id) AS drill_id, max(temp2.date_scrimmage) AS date_scrimmage
     FROM
         (SELECT t1.name, t1.id, t1.organization_id, t2.name AS team
         FROM "Players" t1
@@ -64,6 +65,7 @@ t1.organization_id = t2.id) playerteam
             ON playerteam.id=ev.player_id) temp2
         ON temp1.team = temp2.team
 		WHERE date_scrimmage=target_date_scrimmage
+		GROUP BY temp1.name
 )  pairs
 
     LEFT JOIN
