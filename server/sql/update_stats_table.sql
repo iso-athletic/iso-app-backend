@@ -39,8 +39,8 @@ SELECT pairs.name AS "player_name",
     drstats."tov",
     drstats."pf",
     '' AS id,
-    '' AS created_at,
-    '' AS updated_at
+    Now() AS created_at,
+    now() AS updated_at
 FROM
     (
 	SELECT max(temp1.name) AS name, max(temp1.organization_id) AS organization_id, max(temp1.id) AS player_id, 
