@@ -18,11 +18,11 @@ module.exports = {
           // [Stats.sequelize.fn('SUM', Stats.sequelize.col('3pa')), 'threepa'],
           [Stats.sequelize.fn('AVG', Stats.sequelize.col('3p%')), 'threepp'],
           // [Stats.sequelize.fn('SUM', Stats.sequelize.col('3par')), '3par'],
-          [Stats.sequelize.fn('SUM', Stats.sequelize.col('ft')), 'ft'],
+          // [Stats.sequelize.fn('SUM', Stats.sequelize.col('ft')), 'ft'],
           [Stats.sequelize.fn('AVG', Stats.sequelize.col('ts%')), 'tsp'],
           [Stats.sequelize.fn('AVG', Stats.sequelize.col('efg%')), 'efgp'],
           // [Stats.sequelize.fn('SUM', Stats.sequelize.col('fta')), 'fta'],
-          // [Stats.sequelize.fn('AVG', Stats.sequelize.col('ft%')), 'ftp'],
+          [Stats.sequelize.fn('AVG', Stats.sequelize.col('ft%')), 'ftp'],
           // [Stats.sequelize.fn('SUM', Stats.sequelize.col('ftr')), 'ftr'],
           [Stats.sequelize.fn('SUM', Stats.sequelize.col('oreb')), 'oreb'],
           [Stats.sequelize.fn('SUM', Stats.sequelize.col('dreb')), 'dreb'],
@@ -35,7 +35,7 @@ module.exports = {
         ],
         where: {
           date_scrimmage: {
-            $between: [moment.unix(req.params.date_from).format('YYYY-MM-DD'), moment.unix(req.params.date_to).format('YYYY-MM-DD')]
+            $between: [moment.unix(req.params.date_from).format('YYYY-MM-DD HH:MM:SS'), moment.unix(req.params.date_to).format('YYYY-MM-DD HH:MM:SS')]
           },
           organization_id: req.params.organization_id
         },
