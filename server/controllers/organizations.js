@@ -33,6 +33,23 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
+  // new
+  updatedefaultTime(req, res) {
+    return Organization
+    .update({
+      default_time: req.body.default_time
+    },
+    {
+      returning: true,
+      where:
+      {
+        id: req.params.organization_id
+      }
+    })
+    .then(organization => res.status(202).send(organization))
+    .catch(error => res.status(400).send(error));
+  },
+
   createPlayer(req, res) {
     return Player
       .create({

@@ -22,6 +22,8 @@ module.exports = (app) => {
   // --- organizations --- //
   // gets organization info
   app.get('/api/organizations/:organization_id', organizationsController.getOrganizationInfo);
+  //updates default time
+  app.put('/api/organizations/:organization_id', organizationsController.updatedefaultTime);
   // gets all sessions that were started and completed
   app.get('/api/organizations/:organization_id/sessions', sessionsController.getAll);
 

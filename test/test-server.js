@@ -11,7 +11,7 @@ describe('Session Tests', () => {
   it('should HAPPY PATH on request to /sessions GETALL', (done) => {
     chai.request(server)
       .get('/api/sessions')
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(200);
         res.should.be.json;
         done();
@@ -86,7 +86,7 @@ describe('Actions Test', () => {
     chai.request(server)
       .post('/api/actions')
       .send({ type: 'test'})
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(201)
         chai.request(server)
           .delete('/api/actions' + res.body.id)
@@ -108,7 +108,7 @@ describe('Drills Tests', () => {
         start_time: Sequelize.NOW,
         organization_id: 1
       })
-      .end((res) => {
+      .end((err, res) => {
         sessionId = res.body.id;
         done();
       })
@@ -116,8 +116,8 @@ describe('Drills Tests', () => {
 
   after((done) => {
     chai.request(server)
-      .delete('/api/sessions/' + sessionId)
-      .end((resp) => {
+      .delete('/api/sessions/' + sessionId) 
+      .end((err, resp) => {
         done();
       })
   })
@@ -184,9 +184,8 @@ describe('Events Tests', () => {
   before((done) => {
     chai.request(server)
       .post('/api/sessions/359/drills')
-      .end((res) => {
+      .end((err, res) => {
         drillId = res.body.id;
-        res.should.have.status(201)
         done();
       })
   });
@@ -194,7 +193,7 @@ describe('Events Tests', () => {
   after((done) => {
     chai.request(server)
       .delete('/api/drills/' + drillId)
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(204)
         done();
       })
@@ -204,11 +203,11 @@ describe('Events Tests', () => {
     chai.request(server)
       .post('/api/drills/' + drillId + '/events')
       .send({ action_id: 'Missed FT'})
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(201)
         chai.request(server)
           .delete('/api/events/' + res.body.id)
-          .end((respo) => {
+          .end((err, respo) => {
             respo.should.have.status(204)
             done();
           })
@@ -226,6 +225,22 @@ describe('Organizations Tests', () => {
         done();
       });
   });
+
+  it('should UPDATE default time on request to /organizations/:organization_id PUT', (done) => {
+    chai.request(server)
+      .put('/api/organizations/1')
+      .send({ default_time: 30 })
+      .end((err, res) => {
+        res.should.have.status(202);
+        chai.request(server)
+          .put('/api/organizations/1')
+          .send({ default_time: 120000 })
+          .end((err, resp) => {
+            resp.should.have.status(202)
+            done();
+          });
+      });
+  });
 });
 
 describe('Player Tests', () => {
@@ -234,11 +249,11 @@ describe('Player Tests', () => {
     chai.request(server)
       .post('/api/organizations/1/players')
       .send({ jersey_number: 8})
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(201);
         chai.request(server)
           .delete('/api/players/' + res.body.id)
-          .end((resp) => {
+          .end((err, resp) => {
             resp.should.have.status(204)
             done();
           })
@@ -249,15 +264,15 @@ describe('Player Tests', () => {
     chai.request(server)
       .post('/api/organizations/1/players')
       .send({ jersey_number: 8})
-      .end((res) => {
+      .end((err, res) => {
         chai.request(server)
           .put('/api/players/' + res.body.id)
           .send({ jersey_number: 19})
-          .end((resp) => {
+          .end((err, resp) => {
             resp.should.have.status(202);
             chai.request(server)
               .delete('/api/players/' + res.body.id)
-              .end((respo) => {
+              .end((err, respo) => {
                 respo.should.have.status(204)
                 done();
               })
@@ -272,7 +287,7 @@ describe('Teams test', () => {
     chai.request(server)
       .post('/api/teams')
       .send({ player1_id: 3})
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(201);
         chai.request(server)
         .delete('/api/teams/' + res.body.id)
@@ -286,7 +301,7 @@ describe('Teams test', () => {
     chai.request(server)
       .post('/api/teams')
       .send({ player1_id: 0})
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(400);
         done();
       })
@@ -297,7 +312,7 @@ describe('Teams test', () => {
   it('should HAPPY PATH on request to /stats GET', (done) => {
     chai.request(server)
       .get('/api/organizations/1/stats/1537750318-1538009518')
-      .end((res) => {
+      .end((err, res) => {
         res.should.have.status(200);
         res.should.be.json;
         done();
