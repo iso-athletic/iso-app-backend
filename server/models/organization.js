@@ -2,7 +2,8 @@ module.exports = (sequelize, DataTypes) => {
     const Organization = sequelize.define('Organization', {
         name: DataTypes.STRING,
         colors: DataTypes.STRING,
-        logo: DataTypes.STRING
+        logo: DataTypes.STRING,
+        default_time: DataTypes.STRING
     }, {
         createdAt: "created_at",
         updatedAt: "updated_at"
