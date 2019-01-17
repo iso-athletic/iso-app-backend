@@ -22,6 +22,9 @@ module.exports = {
             as: 'organization_id',
           },
         },
+        position: {
+          type: Sequelize.STRING
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
