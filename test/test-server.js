@@ -75,26 +75,34 @@ describe('Session Tests', () => {
 describe('Actions Test', () => {
   it('should HAPPY PATH on request to /actions GET', (done) => {
     chai.request(server)
-      .get('/api/actions')
+      .get('/api/organizations/1/actions')
       .end(function (err, res) {
         res.should.have.status(200);
         res.should.be.json;
         done();
       });
   });
-  it('should HAPPY PATH on request to /actions POST', (done) => {
+  it('should HAPPY PATH on request to /actions PUT', (done) => {
     chai.request(server)
-      .post('/api/actions')
-      .send({ type: 'test'})
-      .end((err, res) => {
-        res.should.have.status(201)
+      .put('/api/organizations/1/actions')
+      .send({
+        assist: false,
+        foul: false,
+      })
+      .end((error, res) => {
+        res.should.have.status(202);
         chai.request(server)
-          .delete('/api/actions' + res.body.id)
-          .end(() => {
-            done()
+          .put('/api/organizations/1/actions')
+          .send({
+            assist: true,
+            foul: true,
+          })
+          .end((err, r) => {
+            r.should.have.status(202);
+            done();
           })
       })
-  });
+  })
 });
 
 describe('Drills Tests', () => {

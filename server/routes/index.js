@@ -36,11 +36,12 @@ module.exports = (app) => {
 
   // --- actions --- //
   // gets all actions
-  app.get('/api/actions', actionsController.getAll);
-  // creates a new action
-  app.post('/api/actions', actionsController.create);
-  // deletes an action
-  app.delete('/api/actions/:action_id', actionsController.delete);
+  app.get('/api/organizations/:organization_id/actions', actionsController.getAll);
+  app.put('/api/organizations/:organization_id/actions', actionsController.update);
+  // // creates a new action
+  // app.post('/api/actions', actionsController.create);
+  // // deletes an action
+  // app.delete('/api/actions/:action_id', actionsController.delete);
 
   // --- teams --- //
   // creates a new team

@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         colors: DataTypes.STRING,
         logo: DataTypes.STRING,
-        default_time: DataTypes.STRING
+        default_time: DataTypes.STRING,
     }, {
         createdAt: "created_at",
         updatedAt: "updated_at"
@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'organization_id',
             as: 'players',
         });
+        Organization.hasOne(models.Action, {
+            foreignKey: 'id',
+            as: 'actions',
+        })
     };
     return Organization;
 };
