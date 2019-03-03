@@ -39,32 +39,4 @@ module.exports = {
     .then(action => res.status(202).send(action))
     .catch(error => res.status(400).send(error));
   },
-  // create(req, res) {
-  //   let newActionType = req.body.type;
-  //   return Action
-  //     .findAll({attributes: ['type']})
-  //     .then(allActions => {
-  //       // check to make sure action doesn't already exist in the db
-  //       if (allActions.includes(newActionType)) {
-  //         // 409 status code: conflict with current state
-  //         // feel free to change if there's a more relavent one
-  //         res.status(409).send("Action type: " + newActionType + " already exists")
-  //       } else {
-  //         Action
-  //           .build({type: newActionType})
-  //           .save()
-  //           .then(res.status(201).send('Action type: ' + newActionType + ' successfully added'))
-  //           .catch(error => res.status(400).send(error));
-  //       }
-  //     })
-  //     .catch(error => res.status(400).send(error));
-  // },
-
-  // delete(req, res) {
-  //   Action.destroy({
-  //     where: { id: req.params.action_id }
-  //   })
-  //   .then(action => res.status(204).send(action_id))
-  //   .catch(error => res.status(400).send(error))
-  // }
 };
