@@ -2,24 +2,62 @@ module.exports = {
     up: (queryInterface, Sequelize) =>
       queryInterface.createTable('Actions', {
         id: {
-          allowNull: false,
-          autoIncrement: true,
+          type: Sequelize.INTEGER,
           primaryKey: true,
-          type: Sequelize.INTEGER
+          references: {
+            model: 'Organizations',
+            key: 'id',
+            as: 'organization_id',
+          },
         },
-        type: {
-          type: Sequelize.STRING
-        },
-        createdAt: {
+        twopt_make: {
           allowNull: false,
-          type: Sequelize.DATE,
-          field: "created_at"
+          type: Sequelize.BOOLEAN
         },
-        updatedAt: {
+        threept_make: {
           allowNull: false,
-          type: Sequelize.DATE,
-          field: "updated_at"
-        }
+          type: Sequelize.BOOLEAN
+        },
+        ft: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        twopt_miss: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        threept_miss: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        assist: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        turnover: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        off_reb: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        def_reb: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        steal: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        block: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
+        foul: {
+          allowNull: false,
+          type: Sequelize.BOOLEAN
+        },
       }),
     down: (queryInterface, Sequelize) => queryInterface.dropTable('Actions')
   }
