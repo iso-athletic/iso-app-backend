@@ -82,6 +82,7 @@ describe('Actions Test', () => {
         done();
       });
   });
+  
   it('should HAPPY PATH on request to /actions PUT', (done) => {
     chai.request(server)
       .put('/api/organizations/1/actions')
