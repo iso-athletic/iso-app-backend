@@ -64,10 +64,15 @@ module.exports = (app) => {
   app.post('/api/drills/:drill_id/events', eventsController.create);
   // deletes an event
   app.delete('/api/events/:event_id', eventsController.delete);
+  //write function called getAllShotsForOrganization that filters based on organization and date
+  app.get('/api/organizations/:organization_id/events/:date_from-:date_to/shots', eventsController.getAllShotsForOrganization);
 
   // --- stats --- //
   // gets all stats from drills over specific dates
   app.get('/api/organizations/:organization_id/stats/:date_from-:date_to', statsController.getAll);
   // updates the stats table with stats from just completed practice
   app.put('/api/organizations/:organization_id/stats', statsController.updateStatsTable);
+
+
+
 };
