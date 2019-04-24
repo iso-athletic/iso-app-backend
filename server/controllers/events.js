@@ -28,10 +28,10 @@ module.exports = {
 
   getAllShotsForOrganization(req, res){
     return Event
-      .findall({
+      .findAll({
         where: {
           timestamp: {
-            $betweem: [moment.unix(req.params.date_from).format('YYYY-MM-DD HH:MM:SS'), moment.unix(req.params.date_to).format('YYYY-MM-DD HH:MM:SS')]
+            $between: [moment.unix(req.params.date_from).format('YYYY-MM-DD HH:MM:SS'), moment.unix(req.params.date_to).format('YYYY-MM-DD HH:MM:SS')]
           },
           $or: [{action_id: "Made Shot"}, {action_id: "Missed Shot"}]
         },
