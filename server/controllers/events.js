@@ -42,7 +42,7 @@ module.exports = {
           where: {organization_id: req.params.organization_id}
         }]
       })
-      .then(event=>res.status(201).send(event))
+      .then(event=>res.status(200).send(event))
       .catch(error => res.status(400).send(error));
   }
 
