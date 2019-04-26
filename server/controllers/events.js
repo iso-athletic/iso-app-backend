@@ -31,12 +31,13 @@ module.exports = {
       .findAll({
         where: {
           created_at: {
-            $between: [moment.unix(req.params.date_from).format('YYYY-MM-DD'), moment.unix(req.params.date_to).format('YYYY-MM-DD')]
+            $between: [moment.unix(req.params.date_from).format('YYYY-MM-DD HH:MM:SS'), moment.unix(req.params.date_to).format('YYYY-MM-DD HH:MM:SS')]
           },
           $or: [{action_id: "Made Shot"}, {action_id: "Missed Shot"}],
         },
         include: [{
           model: Player,
+          attributes: [],
           where: {organization_id: req.params.organization_id}
         }]
       })
