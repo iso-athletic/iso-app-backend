@@ -35,7 +35,7 @@ module.exports = {
         ],
         where: {
           date_scrimmage: {
-            $between: [moment.unix(req.params.date_from).format('YYYY-MM-DD HH:MM:SS'), moment.unix(req.params.date_to).format('YYYY-MM-DD HH:MM:SS')]
+            $between: [moment.unix(req.params.date_from).utc().format(), moment.unix(req.params.date_to).utc().format()]
           },
           organization_id: req.params.organization_id
         },
@@ -46,15 +46,17 @@ module.exports = {
     },
 
     updateStatsTable(req, res) {
-      Stats.sequelize.query('SELECT updateStatsTable(:target_organization_id, :target_date_scrimmage)', 
-      { replacements: 
-        { 
+      Stats.sequelize.query('SELECT updateStatsTable(:target_organization_id, :target_date_scrimmage)',
+      { replacements:
+        {
           target_organization_id: req.params.organization_id,
-          target_date_scrimmage: req.body.date 
-        }, 
-        type: Stats.sequelize.QueryTypes.SELECT 
+          target_date_scrimmage: req.body.date
+        },
+        type: Stats.sequelize.QueryTypes.SELECT
       })
       .then(res.status(202).send())
       .catch(error => res.status(400).send(error))
     }
+
+
   }

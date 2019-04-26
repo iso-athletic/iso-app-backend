@@ -10,10 +10,13 @@ module.exports = (sequelize, DataTypes) => {
       createdAt: "created_at",
       updatedAt: "updated_at"
     });
-  
+
     Event.associate = (models) => {
       Event.belongsTo(models.Drill, {
         foreignKey: 'drill_id',
+      });
+      Event.belongsTo(models.Player, {
+        foreignKey: 'player_id',
       });
     };
     return Event;

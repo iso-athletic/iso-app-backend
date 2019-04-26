@@ -82,7 +82,7 @@ describe('Actions Test', () => {
         done();
       });
   });
-  
+
   it('should HAPPY PATH on request to /actions PUT', (done) => {
     chai.request(server)
       .put('/api/organizations/1/actions')
@@ -125,7 +125,7 @@ describe('Drills Tests', () => {
 
   after((done) => {
     chai.request(server)
-      .delete('/api/sessions/' + sessionId) 
+      .delete('/api/sessions/' + sessionId)
       .end((err, resp) => {
         done();
       })
@@ -208,6 +208,15 @@ describe('Events Tests', () => {
       })
   });
 
+  it('should HAPPY PATH on request to events/:from-:to/shots GET', (done) => {
+    chai.request(server)
+      .get('/api/organizations/1/events/1537826400-1537826700/shots')
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      })
+  });
+
   it('should HAPPY PATH on request to /drills/:drill_id/events POST', (done) => {
     chai.request(server)
       .post('/api/drills/' + drillId + '/events')
@@ -223,6 +232,7 @@ describe('Events Tests', () => {
       })
   });
 });
+// get instead of post, don't need a send, .end((err, res) => {res.should.have.status(200), done()})
 
 describe('Organizations Tests', () => {
   it('should HAPPY PATH on request to /organizations/:organization_id/players GET', (done) => {
