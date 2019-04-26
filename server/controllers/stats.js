@@ -35,7 +35,7 @@ module.exports = {
         ],
         where: {
           date_scrimmage: {
-            $between: [moment.unix(req.params.date_from).format('YYYY-MM-DD HH:MM:SS'), moment.unix(req.params.date_to).format('YYYY-MM-DD HH:MM:SS')]
+            $between: [moment.unix(req.params.date_from).utc().format(), moment.unix(req.params.date_to).utc().format()]
           },
           organization_id: req.params.organization_id
         },
@@ -58,5 +58,5 @@ module.exports = {
       .catch(error => res.status(400).send(error))
     }
 
-    
+
   }
